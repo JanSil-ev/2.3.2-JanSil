@@ -27,7 +27,7 @@ export function Cards({ id, name, price, image, category, addCart }: Props) {
           image,
           category,
           map: undefined,
-          count : currentCount
+          count: currentCount,
         },
         currentCount
       );
@@ -43,12 +43,12 @@ export function Cards({ id, name, price, image, category, addCart }: Props) {
 
       <div className={classes.infoSection}>
         <div className={classes.productSection}>
-        <Text fw={700} size="lg" className={classes.productName}>
-          {CardNames[0]}
-        </Text>{' '}
-        <Text size="" className={classes.productKG}>
-          {CardNames[1]}
-        </Text>
+          <Text fw={700} size="lg" className={classes.productName}>
+            {CardNames[0]}
+          </Text>{' '}
+          <Text size="" className={classes.productKG}>
+            {CardNames[1]}
+          </Text>
         </div>
         <Steppers
           onCountChange={handleCountChange}
@@ -63,7 +63,7 @@ export function Cards({ id, name, price, image, category, addCart }: Props) {
         </Text>
 
         <Button
-        color="brand.5"
+          color="brand.5"
           mt="md"
           radius="md"
           disabled={currentCount === 0}

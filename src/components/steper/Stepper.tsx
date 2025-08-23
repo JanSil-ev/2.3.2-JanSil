@@ -6,17 +6,17 @@ import classes from './Stepper.module.css';
 export interface SteppersProps {
   onCountChange: (count: number, id?: number) => void;
   initialCount?: number;
-  allowZero?: boolean; 
+  allowZero?: boolean;
 }
 
 export function Steppers({ onCountChange, initialCount = 1, allowZero = false }: SteppersProps) {
   const [count, setCount] = useState(initialCount);
 
-useEffect(() => {
+  useEffect(() => {
     setCount(Math.max(allowZero ? 0 : 1, initialCount || 1));
   }, [initialCount, allowZero]);
 
-const updateCount = (newCount: number) => {
+  const updateCount = (newCount: number) => {
     const validatedCount = Math.max(allowZero ? 0 : 1, newCount);
     setCount(validatedCount);
     onCountChange(validatedCount);
@@ -33,9 +33,10 @@ const updateCount = (newCount: number) => {
             variant="subtle"
             color="gray"
             onClick={delBag}
-             disabled={count <= (allowZero ? 0 : 1)}
+            disabled={count <= (allowZero ? 0 : 1)}
             className={classes.stepperButton}
             size="compact-sm"
+            data-testid="minus-button"
           >
             <IconMinus size={16} />
           </Button>
@@ -50,6 +51,7 @@ const updateCount = (newCount: number) => {
             onClick={addBag}
             className={classes.stepperButton}
             size="compact-sm"
+            data-testid="plus-button"
           >
             <IconPlus size={16} />
           </Button>

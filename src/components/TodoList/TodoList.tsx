@@ -34,7 +34,7 @@ export function TodoList({ addCart }: Props) {
   if (isLoading) {
     return (
       <Center style={{ height: '100vh' }}>
-        <Loader size="xl" variant="dots" />
+        <Loader type="Loader" size="xl" variant="dots" data-testid="loader" />
       </Center>
     );
   }
