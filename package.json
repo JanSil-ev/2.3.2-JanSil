@@ -1,10 +1,12 @@
 {
-  "name": "mantine-vite-template",
-  "private": false,
+  "name": "2.3.2-jansil",
+"homepage": "https://JanSil-ev.github.io/2.3.2-JanSil",
   "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
@@ -45,6 +47,7 @@
     "eslint-config-mantine": "^4.0.3",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.5",
+    "gh-pages": "^6.3.0",
     "identity-obj-proxy": "^3.0.0",
     "jsdom": "^26.1.0",
     "postcss": "^8.5.5",
