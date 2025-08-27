@@ -10,8 +10,5 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './vitest.setup.mjs',
   },
-  build: {
-    outDir: 'dist',
-    sourcemap: false,
-  },
+  base: '/2.3.2-JanSil/'
 });

@@ -1,9 +1,12 @@
 {
-  "name": "2.3.2-jansil",
-"homepage": "https://JanSil-ev.github.io/2.3.2-JanSil",
+  "homepage": "http://jansil-ev.github.io/2.3.2-JanSil",
+  "name": "mantine-vite-template",
+  "private": false,
   "type": "module",
   "version": "0.0.0",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "dev": "vite",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
