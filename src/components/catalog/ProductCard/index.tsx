@@ -1,20 +1,45 @@
-import { useState } from 'react';
-import { IconShoppingCart } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { IconCheck, IconShoppingCart } from '@tabler/icons-react';
 import { Button, Card, Image, Text } from '@mantine/core';
-import { Steppers } from '@/components/steper/Stepper';
-import { CardsItem } from '@/types';
-import classes from './Card.module.css';
+import { CartItem, CardsItem } from '@/types'; 
+import classes from './styles.module.css';
+import { Steppers } from '@/components/steper';
 
 interface Props extends CardsItem {
   addCart: (product: CardsItem, count: number) => void;
+  cartItems: CartItem[]; 
 }
 
-export function Cards({ id, name, price, image, category, addCart }: Props) {
+export function ProductCard({ id, name, price, image, category, addCart, cartItems }: Props) {
   const CardNames = name.split(' - ');
 
   const [currentCount, setCurrentCount] = useState(1);
+  const [isInCart, setIsInCart] = useState(false);
+
+  useEffect(() => {
+    const existingItem = cartItems.find((item) => item.id === id);
+    setIsInCart(!!existingItem);
+
+    if (existingItem) {
+      setCurrentCount(existingItem.count);
+    }
+  }, [cartItems, id]);
+
   const handleCountChange = (newCount: number) => {
     setCurrentCount(newCount);
+
+    if (isInCart) {
+      addCart(
+        {
+          id,
+          name,
+          price,
+          image,
+          category,
+        },
+        newCount
+      );
+    }
   };
 
   const handleAddToCart = () => {
@@ -26,12 +51,9 @@ export function Cards({ id, name, price, image, category, addCart }: Props) {
           price,
           image,
           category,
-          map: undefined,
-          count: currentCount,
         },
         currentCount
       );
-      setCurrentCount(1);
     }
   };
 
@@ -59,18 +81,19 @@ export function Cards({ id, name, price, image, category, addCart }: Props) {
 
       <div className={classes.priceSection}>
         <Text fw={7} size="xl" className={classes.price}>
-          $ {currentCount > 1 ? price * currentCount : price}
+          $ {currentCount > 1 ? (price * currentCount) : price}
         </Text>
 
         <Button
-          color="brand.5"
+          color={isInCart ? 'green' : 'brand.5'}
           mt="md"
           radius="md"
           disabled={currentCount === 0}
           className={classes.addButton}
-          onClick={handleAddToCart}
+          onClick={isInCart ? undefined : handleAddToCart}
+          leftSection={isInCart ? <IconCheck size={18} /> : <IconShoppingCart size={18} />}
         >
-          Add to cart <IconShoppingCart />
+          {isInCart ? 'Added to cart' : 'Add to cart'}
         </Button>
       </div>
     </Card>

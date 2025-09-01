@@ -1,11 +1,13 @@
 export interface CardsItem {
-  [x: string]: any;
-  map: any;
   id: number;
   name: string;
   price: number;
   image: string;
   category: string;
-  count: number;
+  map?: any; // Уберите это свойство, если оно не используется
 }
 
+// Правильный интерфейс для элемента корзины
+export interface CartItem extends CardsItem {
+  count: number;
+}

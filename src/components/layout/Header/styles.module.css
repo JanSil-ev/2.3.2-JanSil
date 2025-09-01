@@ -1,8 +1,7 @@
-.appShell {
-  background-color: #F3F5FA;
-}
+
 
 .header {
+    background-color: #F3F5FA;
   background-color: white;
   border-bottom: none;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -14,9 +13,6 @@
   color: #333;
 }
 
-.main {
-  padding: 24px;
-}
 
 .gridContainer {
   display: grid;

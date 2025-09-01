@@ -1,14 +1,14 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { MantineProvider } from '@mantine/core';
-import { CardsItem } from '@/types';
-import { CartButton } from './CartButton';
+import { CartItem } from '@/types';
+import { CartButton } from '.';
 
 function renderWithMantine(ui: React.ReactElement) {
   return render(<MantineProvider>{ui}</MantineProvider>);
 }
 
-const mockCartItems: CardsItem[] = [
+const mockCartItems: CartItem[] = [
   {
     id: 1,
     name: 'Test Product 1 - 1kg',

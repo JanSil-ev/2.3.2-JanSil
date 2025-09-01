@@ -2,14 +2,20 @@ import { useEffect, useState } from 'react';
 import ky from 'ky';
 import { Center, Flex, Loader } from '@mantine/core';
 import { CardsItem } from '@/types';
-import { Cards } from './Card/Card';
-import classes from './TodoList.module.css';
+import classes from './styles.module.css';
+import { ProductCard } from '../ProductCard';
+
+
+interface CartItem extends CardsItem {
+  count: number;
+}
 
 interface Props {
   addCart: (product: CardsItem, count: number) => void;
+  cartItems: CartItem[]; 
 }
 
-export function TodoList({ addCart }: Props) {
+export function ProductCatalog({ addCart, cartItems }: Props) {
   const [products, setProducts] = useState<CardsItem[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -53,7 +59,12 @@ export function TodoList({ addCart }: Props) {
           className={classes.flexContainer}
         >
           {products?.map((p) => (
-            <Cards key={p.id} {...p} addCart={addCart} />
+            <ProductCard 
+              key={p.id} 
+              {...p} 
+              addCart={addCart} 
+              cartItems={cartItems}  
+            />
           ))}
         </Flex>
       </div>

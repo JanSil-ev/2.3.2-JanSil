@@ -1,14 +1,15 @@
 import { IconShoppingCart } from '@tabler/icons-react';
 import { Badge, Button, Menu, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { CardsItem } from '@/types';
-import cartIcon from '../image/cart_empty.svg';
-import { Steppers } from '../steper/Stepper';
-import classes from './CartButton.module.css';
+import { CartItem } from '@/types';
+import cartIcon from '../../image/cart_empty.svg';
+
+import classes from './styles.module.css';
+import { Steppers } from '@/components/steper';
 
 type CartButtonProps = {
   numbers: number;
-  cart: CardsItem[];
+  cart: CartItem[];
   changeCount: (id: number, count: number) => void;
 };
 
@@ -44,7 +45,7 @@ export function CartButton({ numbers, cart, changeCount }: CartButtonProps) {
         <Menu.Dropdown className={classes.menuDropdown}>
           {cart.length > 0 ? (
             <>
-              {cart.map((product: CardsItem) => (
+              {cart.map((product: CartItem) => ( 
                 <div key={product.id} className={classes.cartItem}>
                   <img src={product.image} alt={product.name} className={classes.image} />
                   <div>
